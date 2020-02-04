@@ -69,3 +69,6 @@ html, body {
     cursor: pointer;
   }
   
+  .h1 {
+    font-size: large;
+}

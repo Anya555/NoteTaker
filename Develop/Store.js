@@ -24,8 +24,15 @@ app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
+//reads the db.json file and returns all saved notes as JSON
+app.get("api/notes", function(req, res){
+    res.sendFile(path.join(__dirname, "./db/db.json"));
+    console.log(res);
+})
+
 
 // Starts our server
 app.listen(PORT, function() {
     console.log("Server listening on: http://localhost:" + PORT);
   });
+
