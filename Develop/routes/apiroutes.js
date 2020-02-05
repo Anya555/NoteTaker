@@ -12,17 +12,16 @@ module.exports = function(app) {
   });
 
   app.post("/api/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "/db/db.json"));
+    // res.sendFile(path.join(__dirname, "../db/db.json"));
+
+    let storeObj = db;
 
     let nextNote = new Store(req.body.title, req.body.text);
-    savedNotes.push(nextNote);
+    storeObj.push(nextNote);
 
-    fs.writeFileSync("./db/db.json", function(error, data) {
-      if (error) {
-        return console.log(error);
-      }
-
-      return res.json(savedNotes);
+    fs.writeFile("./db/db.json", JSON.stringify(storeObj), function(err){
+      res.json(storeObj);
     });
   });
+
 };

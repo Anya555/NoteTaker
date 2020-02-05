@@ -1,7 +1,1 @@
-function(error, data) {
-      if (error) {
-        return console.log(error);
-      }
-
-      return res.json(savedNotes);
-    }
+[{"id":152243,"title":"Test2","text":"Test2"},{"id":6847464,"title":"scscscsc","text":"scscscsc"},{"id":545432,"title":"ccdcdc","text":"dcdcdcd"},{"id":66271,"title":"Gary is awesome","text":"Right Anya????"}]
