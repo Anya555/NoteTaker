@@ -13,16 +13,15 @@ module.exports = function(app) {
     let storeObj = db;
 
     // making new Store object to access id parameter of each note
-    let noteId = new Store (req.body.id);
+  // let noteId = new Store (req.body.id);
+  let noteId = req.params.id;
 
+   storeObj = storeObj.filter(filteredNote => {
+   return filteredNote.id != noteId;
+  });
 
-   let newStoreObj = storeObj.filter(filteredNote => {
-      return filteredNote.id != noteId;
-    });
-
-
-    fs.writeFile("./db/db.json", JSON.stringify(newStoreObj), function(err){
-      res.json(newStoreObj);  
+    fs.writeFile("./db/db.json", JSON.stringify(storeObj), function(err){
+      res.json(storeObj);  
   });
 });
 
