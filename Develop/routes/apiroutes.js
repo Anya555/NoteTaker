@@ -11,21 +11,25 @@ module.exports = function(app) {
 
   app.delete("/api/notes/:id", function(req, res) {
     let storeObj = db;
+      console.log(storeObj);
+      
+  // accessing URL parameters
+    let noteId = req.params.id;
 
-    // making new Store object to access id parameter of each note
-  // let noteId = new Store (req.body.id); this doesn't work
+    let filteredDB = storeObj.filter(filteredNote => {
+      return filteredNote.id != noteId;
+    });
 
-// accessing URL parameters
-  let noteId = req.params.id;
+    fs.writeFile("./db/db.json", JSON.stringify(filteredDB), function(err) {
+      if(err) throw err;
+      // console.log(filteredDB);
+      // res.json(filteredDB); 
+    });
 
-   storeObj = storeObj.filter(filteredNote => {
-   return filteredNote.id != noteId;
+    // We need to have the route localhost:8080//notes
+    res.json(filteredDB); 
+
   });
-
-    fs.writeFile("./db/db.json", JSON.stringify(storeObj), function(err){
-      res.json(storeObj);  
-  });
-});
 
   //Should receive a new note to save on the request body, add it to the db.json file,
   // and then return the new note to the client.
