@@ -13,7 +13,9 @@ module.exports = function(app) {
     let storeObj = db;
 
     // making new Store object to access id parameter of each note
-  // let noteId = new Store (req.body.id);
+  // let noteId = new Store (req.body.id); this doesn't work
+
+// accessing URL parameters
   let noteId = req.params.id;
 
    storeObj = storeObj.filter(filteredNote => {
